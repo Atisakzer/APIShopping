@@ -1,8 +1,8 @@
-package midterm.movie.movieAPI.controller;
+package midterm.movie.shoppingAPI.controller;
 
 
-import midterm.movie.movieAPI.model.Movie;
-import midterm.movie.movieAPI.repository.MovieRepository;
+import midterm.movie.shoppingAPI.model.Movie;
+import midterm.movie.shoppingAPI.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,4 +1,4 @@
-package midterm.movie.movieAPI.model;
+package midterm.movie.shoppingAPI.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

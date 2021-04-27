@@ -1,10 +1,8 @@
-package midterm.movie.movieAPI.repository;
+package midterm.movie.shoppingAPI.repository;
 
-import midterm.movie.movieAPI.model.Movie;
+import midterm.movie.shoppingAPI.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface MovieRepository extends JpaRepository<Movie,Integer> {
