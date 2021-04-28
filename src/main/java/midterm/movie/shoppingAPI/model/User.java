@@ -18,7 +18,6 @@ public class User {
     public String email;
     public String tel;
     public String location;
-    public boolean IsSuperUser;
 
     public int getId() {
         return id;
@@ -83,10 +82,4 @@ public class User {
     public void setLocation(String location) {
         this.location = location;
     }
-
-    public boolean getIsSuperUser() {return IsSuperUser;}
-
-    public void setIsSuperUser(boolean isSuperUser) {this.IsSuperUser = isSuperUser;}
-
-
 }

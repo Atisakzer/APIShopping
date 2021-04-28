@@ -19,12 +19,12 @@ public class UserController {
     }
 
     @GetMapping("/login/{username}/{password}")
-    public List<User> getAllName(@PathVariable String username,@PathVariable String password) {
+    public User getAllName(@PathVariable String username,@PathVariable String password) {
         List<User> record = userRepository.findAll();
-        List<User> respones = new ArrayList<>();
+        User respones = new User();
         for (User item : record) {
             if (item.getUsername().contains(username) && item.getPassword().contains(password)) {
-                respones.add(item);
+                respones =item;
             }
         }
         return respones;
