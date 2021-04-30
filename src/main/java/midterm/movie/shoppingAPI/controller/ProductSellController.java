@@ -62,4 +62,11 @@ public class ProductSellController {
         return record;
     }
 
+    @DeleteMapping("/{id}")
+    public ProductSell delete(@PathVariable int id) {
+        ProductSell record = productSellRepository.findById(id).get();
+        productSellRepository.deleteById(id);
+        return record;
+    }
+
 }
