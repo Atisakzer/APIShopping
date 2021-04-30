@@ -1,20 +1,24 @@
 package midterm.movie.shoppingAPI.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.text.DateFormat;
+import java.util.Date;
 
 @Entity
 public class ProductSell {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
     public String productName;
     public int price;
     public int status;
     public String detail;
     public String image;
-    public String createdate;
-    public String editdate;
+    public Date createdate;
+    public Date editdate;
     public int createBy;
     public int editBy;
     public int user_id;
@@ -68,19 +72,19 @@ public class ProductSell {
         this.image = image;
     }
 
-    public String getCreatedate() {
+    public Date getCreatedate() {
         return createdate;
     }
 
-    public void setCreatedate(String createdate) {
+    public void setCreatedate(Date createdate) {
         this.createdate = createdate;
     }
 
-    public String getEditdate() {
+    public Date getEditdate() {
         return editdate;
     }
 
-    public void setEditdate(String editdate) {
+    public void setEditdate(Date editdate) {
         this.editdate = editdate;
     }
 

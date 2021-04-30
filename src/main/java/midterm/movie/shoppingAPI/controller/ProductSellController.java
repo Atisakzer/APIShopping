@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -48,21 +49,17 @@ public class ProductSellController {
     }
 
     @PutMapping("/{id}")
-    public ProductSell update(@PathVariable int id, @RequestBody ProductSell productSell) {
+    public ProductSell update(@PathVariable int id,
+                              @RequestBody ProductSell productSell) {
         ProductSell record = productSellRepository.findById(id).get();
         record.setProductName(productSell.getProductName());
         record.setPrice(productSell.getPrice());
         record.setDetail(productSell.getDetail());
         record.setImage(productSell.getImage());
-        record.setEditdate(productSell.getEditdate());
+        record.setEditdate(new Date());
         record.setEditBy(productSell.getEditBy());
+        productSellRepository.save(record);
         return record;
     }
 
-    @DeleteMapping("/{id}")
-    public ProductSell delete(@PathVariable int id) {
-        ProductSell record = productSellRepository.findById(id).get();
-        productSellRepository.deleteById(id);
-        return record;
-    }
 }
