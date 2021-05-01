@@ -104,6 +104,12 @@ public class OrderBuyController {
 
     @PutMapping("/destroy/{id}")
     public OrderBuy destroy(@PathVariable int id) {
+        OrderBuy record = orderBuyRepository.findById(id).get();
+        record.statusBuy_id = 3;
+        orderBuyRepository.save(record);
+        return record;
+    }
+    
     @PutMapping("updateBuy/{id}")
     public OrderBuy update(@PathVariable int id,@RequestBody OrderBuyAndSell orderBuyAndSell) {
         OrderBuy record = orderBuyRepository.findById(id).get();
