@@ -56,7 +56,7 @@ public class OrderBuyController {
                 orderBuyAndSell.Tracking = item.Tracking;
                 List<ProductSell> productSellList = productSellRepository.findAll();
                 for (ProductSell p : productSellList) {
-                    if (p.getUser_id() == userId) {
+                    if (p.getId() == item.getProduct_id()) {
                         orderBuyAndSell.productSell = p;
                     }
                 }
@@ -94,7 +94,7 @@ public class OrderBuyController {
                 orderBuyAndSell.Tracking = item.Tracking;
                 List<ProductSell> productSellList = productSellRepository.findAll();
                 for (ProductSell p : productSellList) {
-                    if (p.getUser_id() == userId) {
+                    if (p.getId() == item.getProduct_id()) {
                         orderBuyAndSell.productSell = p;
                     }
                 }
