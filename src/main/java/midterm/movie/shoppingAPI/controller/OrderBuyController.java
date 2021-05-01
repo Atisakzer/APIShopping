@@ -94,6 +94,24 @@ public class OrderBuyController {
         return record;
     }
 
+    @PutMapping("/confirm/{id}")
+    public OrderBuy confirm(@PathVariable int id) {
+        OrderBuy record = orderBuyRepository.findById(id).get();
+        record.statusBuy_id = 2;
+        orderBuyRepository.save(record);
+        return record;
+    }
+
+    @PutMapping("/destroy/{id}")
+    public OrderBuy destroy(@PathVariable int id) {
+    @PutMapping("updateBuy/{id}")
+    public OrderBuy update(@PathVariable int id,@RequestBody OrderBuyAndSell orderBuyAndSell) {
+        OrderBuy record = orderBuyRepository.findById(id).get();
+        record.statusBuy_id = 3;
+        orderBuyRepository.save(record);
+        return record;
+    }
+
     @DeleteMapping("/{id}")
     public OrderBuy delete(@PathVariable int id) {
         OrderBuy record = orderBuyRepository.findById(id).get();
