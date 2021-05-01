@@ -3,7 +3,9 @@ package midterm.movie.shoppingAPI.controller;
 
 import midterm.movie.shoppingAPI.model.Movie;
 import midterm.movie.shoppingAPI.model.OrderBuy;
+import midterm.movie.shoppingAPI.model.ProductSell;
 import midterm.movie.shoppingAPI.repository.OrderBuyRepository;
+import midterm.movie.shoppingAPI.repository.ProductSellRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +17,11 @@ import java.util.List;
 public class OrderBuyController {
     @Autowired
     private OrderBuyRepository orderBuyRepository;
+    private ProductSellRepository productSellRepository;
 
-    public OrderBuyController(OrderBuyRepository repository) {
+    public OrderBuyController(OrderBuyRepository repository,ProductSellRepository productRepository) {
         this.orderBuyRepository = repository;
+        this.productSellRepository = productRepository;
     }
 
     @GetMapping
@@ -56,6 +60,8 @@ public class OrderBuyController {
 
     @PostMapping
     public OrderBuy create(@RequestBody OrderBuy orderBuy) {
+        ProductSell productSell = productSellRepository.findById(orderBuy.product_id).get();
+        orderBuy.setUserSell_id(productSell.user_id);
         OrderBuy record = orderBuyRepository.save(orderBuy);
         return record;
     }

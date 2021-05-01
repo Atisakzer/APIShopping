@@ -1,11 +1,14 @@
 package midterm.movie.shoppingAPI.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class OrderBuy {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
     public int product_id;
     public String createdate;
