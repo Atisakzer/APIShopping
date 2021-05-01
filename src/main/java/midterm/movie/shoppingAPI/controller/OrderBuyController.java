@@ -41,9 +41,10 @@ public class OrderBuyController {
         List<OrderBuy> record = orderBuyRepository.findAll();
         List<OrderBuyAndSell> respone = new ArrayList<>();
         for (OrderBuy item : record) {
-            if (item.getUserSell_id() == userId) {
+            if (item.userBuy_id == userId) {
                 OrderBuyAndSell orderBuyAndSell = new OrderBuyAndSell();
                 orderBuyAndSell.id = item.id;
+                orderBuyAndSell.id_order = item.id;
                 orderBuyAndSell.product_id = item.product_id;
                 orderBuyAndSell.createdate = item.createdate;
                 orderBuyAndSell.editdate = item.editdate;
@@ -52,7 +53,7 @@ public class OrderBuyController {
                 orderBuyAndSell.userBuy_id = item.userBuy_id;
                 orderBuyAndSell.userSell_id = item.userSell_id;
                 orderBuyAndSell.statusBuy_id = item.statusBuy_id;
-
+                orderBuyAndSell.Tracking = item.Tracking;
                 List<ProductSell> productSellList = productSellRepository.findAll();
                 for (ProductSell p : productSellList) {
                     if (p.getUser_id() == userId) {
@@ -81,6 +82,7 @@ public class OrderBuyController {
             if (item.getUserSell_id() == userId) {
                 OrderBuyAndSell orderBuyAndSell = new OrderBuyAndSell();
                 orderBuyAndSell.id = item.id;
+                orderBuyAndSell.id_order = item.id;
                 orderBuyAndSell.product_id = item.product_id;
                 orderBuyAndSell.createdate = item.createdate;
                 orderBuyAndSell.editdate = item.editdate;
@@ -89,7 +91,7 @@ public class OrderBuyController {
                 orderBuyAndSell.userBuy_id = item.userBuy_id;
                 orderBuyAndSell.userSell_id = item.userSell_id;
                 orderBuyAndSell.statusBuy_id = item.statusBuy_id;
-
+                orderBuyAndSell.Tracking = item.Tracking;
                 List<ProductSell> productSellList = productSellRepository.findAll();
                 for (ProductSell p : productSellList) {
                     if (p.getUser_id() == userId) {
@@ -139,6 +141,15 @@ public class OrderBuyController {
     public OrderBuy update(@PathVariable int id,@RequestBody OrderBuyAndSell orderBuyAndSell) {
         OrderBuy record = orderBuyRepository.findById(id).get();
         record.statusBuy_id = 3;
+        orderBuyRepository.save(record);
+        return record;
+    }
+
+    @PutMapping("Tracking/{id}")
+    public OrderBuy updateTracking(@PathVariable int id,@RequestBody OrderBuy orderBuy) {
+        OrderBuy record = orderBuyRepository.findById(id).get();
+        record.statusBuy_id = 4;
+        record.Tracking = orderBuy.Tracking;
         orderBuyRepository.save(record);
         return record;
     }

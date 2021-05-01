@@ -5,6 +5,7 @@ import java.util.Date;
 public class OrderBuyAndSell {
 
     public int id;
+    public int id_order;
     public int product_id;
     public Date createdate;
     public Date editdate;
@@ -15,6 +16,23 @@ public class OrderBuyAndSell {
     public int statusBuy_id;
     public ProductSell productSell;
     public User user;
+    public String Tracking;
+
+    public int getId_order() {
+        return id_order;
+    }
+
+    public void setId_order(int id_order) {
+        this.id_order = id_order;
+    }
+
+    public String getTracking() {
+        return Tracking;
+    }
+
+    public void setTracking(String tracking) {
+        Tracking = tracking;
+    }
 
     public User getUser() {
         return user;

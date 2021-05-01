@@ -19,6 +19,15 @@ public class OrderBuy {
     public int userBuy_id;
     public int userSell_id;
     public int statusBuy_id;
+    public String Tracking;
+
+    public String getTracking() {
+        return Tracking;
+    }
+
+    public void setTracking(String tracking) {
+        Tracking = tracking;
+    }
 
     public int getUserSell_id() {
         return userSell_id;
