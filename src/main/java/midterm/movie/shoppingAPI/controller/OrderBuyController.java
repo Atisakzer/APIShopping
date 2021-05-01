@@ -39,12 +39,37 @@ public class OrderBuyController {
     }
 
     @GetMapping("/userbuy/{userId}")
-    public List<OrderBuy> getUserbuy(@PathVariable int userId) {
+    public List<OrderBuyAndSell> getUserbuy(@PathVariable int userId) {
         List<OrderBuy> record = orderBuyRepository.findAll();
-        List<OrderBuy> respone = new ArrayList<>();
+        List<OrderBuyAndSell> respone = new ArrayList<>();
         for (OrderBuy item : record) {
-            if (item.getUserBuy_id() == userId) {
-                respone.add(item);
+            if (item.getUserSell_id() == userId) {
+                OrderBuyAndSell orderBuyAndSell = new OrderBuyAndSell();
+                orderBuyAndSell.id = item.id;
+                orderBuyAndSell.product_id = item.product_id;
+                orderBuyAndSell.createdate = item.createdate;
+                orderBuyAndSell.editdate = item.editdate;
+                orderBuyAndSell.createBy = item.createBy;
+                orderBuyAndSell.editBy = item.editBy;
+                orderBuyAndSell.userBuy_id = item.userBuy_id;
+                orderBuyAndSell.userSell_id = item.userSell_id;
+                orderBuyAndSell.statusBuy_id = item.statusBuy_id;
+
+                List<ProductSell> productSellList = productSellRepository.findAll();
+                for (ProductSell p : productSellList) {
+                    if (p.getUser_id() == userId) {
+                        orderBuyAndSell.productSell = p;
+                    }
+                }
+
+                List<User> UserList = userRepository.findAll();
+                for (User p : UserList) {
+                    if (p.getId() == userId) {
+                        orderBuyAndSell.user = p;
+                    }
+                }
+
+                respone.add(orderBuyAndSell);
             }
         }
         return respone;
@@ -106,6 +131,8 @@ public class OrderBuyController {
 
     @PutMapping("/destroy/{id}")
     public OrderBuy destroy(@PathVariable int id) {
+    @PutMapping("updateBuy/{id}")
+    public OrderBuy update(@PathVariable int id,@RequestBody OrderBuyAndSell orderBuyAndSell) {
         OrderBuy record = orderBuyRepository.findById(id).get();
         record.statusBuy_id = 3;
         orderBuyRepository.save(record);
