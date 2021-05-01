@@ -1,15 +1,9 @@
 package midterm.movie.shoppingAPI.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.util.Date;
 
-@Entity
-public class OrderBuy {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class OrderBuyAndSell {
+
     public int id;
     public int product_id;
     public Date createdate;
@@ -19,14 +13,18 @@ public class OrderBuy {
     public int userBuy_id;
     public int userSell_id;
     public int statusBuy_id;
+    public ProductSell productSell;
+    public User user;
 
-    public int getUserSell_id() {
-        return userSell_id;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserSell_id(int userSell_id) {
-        this.userSell_id = userSell_id;
+    public void setUser(User user) {
+        this.user = user;
     }
+
+
 
     public int getId() {
         return id;
@@ -84,6 +82,14 @@ public class OrderBuy {
         this.userBuy_id = userBuy_id;
     }
 
+    public int getUserSell_id() {
+        return userSell_id;
+    }
+
+    public void setUserSell_id(int userSell_id) {
+        this.userSell_id = userSell_id;
+    }
+
     public int getStatusBuy_id() {
         return statusBuy_id;
     }
@@ -92,13 +98,13 @@ public class OrderBuy {
         this.statusBuy_id = statusBuy_id;
     }
 
-    public int getUserProduct_id() {
-        return UserProduct_id;
+    public ProductSell getProductSell() {
+        return productSell;
     }
 
-    public void setUserProduct_id(int userProduct_id) {
-        UserProduct_id = userProduct_id;
+    public void setProductSell(ProductSell productSell) {
+        this.productSell = productSell;
     }
 
-    public int UserProduct_id;
+
 }
