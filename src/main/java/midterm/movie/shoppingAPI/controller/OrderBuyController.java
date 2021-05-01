@@ -5,6 +5,8 @@ import midterm.movie.shoppingAPI.model.*;
 import midterm.movie.shoppingAPI.repository.OrderBuyRepository;
 import midterm.movie.shoppingAPI.repository.ProductSellRepository;
 import midterm.movie.shoppingAPI.repository.UserRepository;
+import org.aspectj.weaver.ast.Or;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -91,6 +93,22 @@ public class OrderBuyController {
         orderBuy.setUserSell_id(productSell.user_id);
         orderBuy.statusBuy_id = 1;
         OrderBuy record = orderBuyRepository.save(orderBuy);
+        return record;
+    }
+
+    @PutMapping("/confirm/{id}")
+    public OrderBuy confirm(@PathVariable int id) {
+        OrderBuy record = orderBuyRepository.findById(id).get();
+        record.statusBuy_id = 2;
+        orderBuyRepository.save(record);
+        return record;
+    }
+
+    @PutMapping("/destroy/{id}")
+    public OrderBuy destroy(@PathVariable int id) {
+        OrderBuy record = orderBuyRepository.findById(id).get();
+        record.statusBuy_id = 3;
+        orderBuyRepository.save(record);
         return record;
     }
 
