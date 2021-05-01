@@ -31,11 +31,23 @@ public class OrderBuyController {
     }
 
     @GetMapping("/userbuy/{userId}")
-    public List<OrderBuy> getAllYear(@PathVariable int userId) {
+    public List<OrderBuy> getUserbuy(@PathVariable int userId) {
         List<OrderBuy> record = orderBuyRepository.findAll();
         List<OrderBuy> respone = new ArrayList<>();
         for (OrderBuy item : record) {
             if (item.getUserBuy_id() == userId) {
+                respone.add(item);
+            }
+        }
+        return respone;
+    }
+
+    @GetMapping("/usersell/{userId}")
+    public List<OrderBuy> getUserSell(@PathVariable int userId) {
+        List<OrderBuy> record = orderBuyRepository.findAll();
+        List<OrderBuy> respone = new ArrayList<>();
+        for (OrderBuy item : record) {
+            if (item.getUserSell_id() == userId) {
                 respone.add(item);
             }
         }

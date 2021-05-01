@@ -13,7 +13,16 @@ public class OrderBuy {
     public int createBy;
     public int editBy;
     public int userBuy_id;
+    public int userSell_id;
     public int statusBuy_id;
+
+    public int getUserSell_id() {
+        return userSell_id;
+    }
+
+    public void setUserSell_id(int userSell_id) {
+        this.userSell_id = userSell_id;
+    }
 
     public int getId() {
         return id;
