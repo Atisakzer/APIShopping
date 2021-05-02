@@ -37,6 +37,18 @@ public class ProductSellController {
         return productSellRepository.findAll();
     }
 
+    @GetMapping("no_id/{id}")
+    public List<ProductSell> getnotAll(@PathVariable int id) {
+        List<ProductSell> productSellList = productSellRepository.findAll();
+        List<ProductSell> respone = new ArrayList<>();
+        for (ProductSell productSell : productSellList) {
+            if (productSell.user_id != id) {
+                respone.add(productSell);
+            }
+        }
+        return respone;
+    }
+
     @GetMapping("/{id}")
     public ProductSell getOne(@PathVariable int id) {
         return productSellRepository.findById(id).get();
