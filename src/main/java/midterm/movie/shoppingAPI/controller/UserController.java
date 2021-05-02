@@ -23,7 +23,7 @@ public class UserController {
         List<User> record = userRepository.findAll();
         User respones = new User();
         for (User item : record) {
-            if (item.getUsername().contains(username) && item.getPassword().contains(password)) {
+            if (item.username == username && item.password == password) {
                 respones =item;
             }
         }
